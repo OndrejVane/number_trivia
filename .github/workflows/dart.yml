@@ -19,4 +19,6 @@ jobs:
       - uses: subosito/flutter-action@v2.8.0
       - name: Run tests
         working-directory: ./
-        run: flutter test test
+        run: | 
+          pwd
+          flutter test test
