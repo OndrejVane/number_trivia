@@ -36,9 +36,9 @@ void main() {
     test("Should check if device is online", () {
       // Arrange
       when(networkInfo.isConnected).thenAnswer((_) async => true);
-      // act
+      // Act
       numberTriviaRepositoryImpl.getConcreteNumberTrivia(tNumber);
-      // assert
+      // Assert
       verify(networkInfo.isConnected);
     });
   });
