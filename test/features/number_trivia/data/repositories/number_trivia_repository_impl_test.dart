@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -28,10 +29,11 @@ void main() {
       networkInfo: networkInfo,
     );
   });
-  
+
   group("getConcreteNumberTrivia", () {
     const tNumber = 1;
-    const tNumberTriviaModel = NumberTriviaModel(text: "text trivia", number: tNumber);
+    const tNumberTriviaModel =
+        NumberTriviaModel(text: "text trivia", number: tNumber);
     const tNumberTrivia = tNumberTriviaModel;
     test("Should check if device is online", () {
       // Arrange
@@ -40,6 +42,30 @@ void main() {
       numberTriviaRepositoryImpl.getConcreteNumberTrivia(tNumber);
       // Assert
       verify(networkInfo.isConnected);
+    });
+
+    group("Device is online", () {
+      setUp(() {
+        when(networkInfo.isConnected).thenAnswer((_) async => true);
+      });
+
+      test("Should return remote data source if device is online", () async {
+        // Arrange
+        when(numberTriviaRemoteDataSource.getConcreteNumberTrivia(any))
+            .thenAnswer((_) async => tNumberTriviaModel);
+        // Act
+        final result =
+            await numberTriviaRepositoryImpl.getConcreteNumberTrivia(tNumber);
+        // Assert
+        verify(numberTriviaRemoteDataSource.getConcreteNumberTrivia(tNumber));
+        expect(result, equals(const Right(tNumberTrivia)));
+      });
+    });
+
+    group("Device is offline", () {
+      setUp(() {
+        when(networkInfo.isConnected).thenAnswer((_) async => false);
+      });
     });
   });
 }
