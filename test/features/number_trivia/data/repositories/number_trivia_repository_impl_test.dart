@@ -19,7 +19,7 @@ void main() {
   late final MockNumberTriviaRemoteDataSource numberTriviaRemoteDataSource;
   late final MockNetworkInfo networkInfo;
 
-  setUp(() {
+  setUpAll(() {
     numberTriviaLocalDataSource = MockNumberTriviaLocalDataSource();
     numberTriviaRemoteDataSource = MockNumberTriviaRemoteDataSource();
     networkInfo = MockNetworkInfo();
