@@ -3,22 +3,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:number_trivia/core/use_cases/use_case.dart';
 import 'package:number_trivia/features/number_trivia/domain/entities/number_trivia.dart';
-import 'package:number_trivia/features/number_trivia/domain/repositories/number_trivia_repository.dart';
 import 'package:mockito/annotations.dart';
 import 'package:number_trivia/features/number_trivia/domain/use_cases/get_random_number_trivia.dart';
 
 import 'get_concrete_number_trivia_test.mocks.dart';
 
-class MockNumberTriviaRepository extends Mock
-    implements NumberTriviaRepository {}
+@GenerateNiceMocks([MockSpec<NumberTriviaRepository>()])
+import 'package:number_trivia/features/number_trivia/domain/repositories/number_trivia_repository.dart';
 
-@GenerateMocks([MockNumberTriviaRepository])
 void main() {
   late final GetRandomNumberTrivia usecase;
-  late final MockMockNumberTriviaRepository mockNumberTriviaRepository;
+  late final NumberTriviaRepository mockNumberTriviaRepository;
 
   setUp(() {
-    mockNumberTriviaRepository = MockMockNumberTriviaRepository();
+    mockNumberTriviaRepository = MockNumberTriviaRepository();
     usecase = GetRandomNumberTrivia(mockNumberTriviaRepository);
   });
 
