@@ -9,7 +9,7 @@ import 'package:number_trivia/features/number_trivia/data/repositories/number_tr
 import 'number_trivia_repository_impl_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<NetworkInfo>()])
-import 'package:number_trivia/core/platforms/network_info.dart';
+import 'package:number_trivia/core/network/network_info.dart';
 @GenerateNiceMocks([MockSpec<NumberTriviaRemoteDataSource>()])
 import 'package:number_trivia/features/number_trivia/data/data_sources/number_trivia_remote_data_source.dart';
 @GenerateNiceMocks([MockSpec<NumberTriviaLocalDataSource>()])
