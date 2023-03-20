@@ -11,7 +11,6 @@ abstract class NumberTriviaLocalDataSource {
   Future<void> cacheNumberTrivia(NumberTriviaModel numberTriviaModel);
 }
 
-
 const KEY_CACHED_NUMBER_TRIVIA = 'KEY_CACHED_NUMBER_TRIVIA';
 
 class NumberTriviaLocalDataSourceImpl implements NumberTriviaLocalDataSource {
